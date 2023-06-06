@@ -1,0 +1,41 @@
+
+{%extends 'base.html'%}
+{%block body%}
+{%for o in  orders%}
+<section class="py-6">
+    <div class="container px-4 px-lg-5 my-4">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-4">
+                {%if o.product.image%}
+                <img class="card-img-top mb-5 mb-md-0" src="{{o.product.image.url}}" alt="..." / height="300px">
+                {%else%}
+                <img class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+
+                {%endif%}
+            </div>
+            <div class="col-md-6">
+                <div class="small mb-1">SKU: BST-498</div>
+                <h1 class="display-5 fw-bolder">{{o.product.product_name}}</h1>
+                <div class="fs-5 mb-2">
+                    <span class="">{{o.product.price}}</span>
+                </div>
+                <div class="fs-5 mb-1">
+                    <span class="">Expected delivery date:{{o.expected_deliverydate}}</span>
+                </div>
+                <div class="fs-5 mb-1">
+                    <span class="">status:{{o.status}}</span>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <a href="{%url 'order-remove' o.id%}" class="btn btn-danger">cancel</a>
+                <a href="{%url 'review-add' o.product.id %}" class="btn btn-info">add your review</a>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+{%endfor%}
+
+{%endblock%}
